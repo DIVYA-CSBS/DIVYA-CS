@@ -1,0 +1,28 @@
+import pandas as pd
+from sklearn.datasets import load_iris
+
+# Load the Iris dataset
+iris = load_iris()
+iris_df = pd.DataFrame(iris.data, columns=iris.feature_names)
+
+# Print first 10 records
+print("First 10 records:\n", iris_df.head(10))
+
+# Total number of rows and columns
+num_rows, num_columns = iris_df.shape
+print("\nTotal number of rows:", num_rows)
+print("Total number of columns:", num_columns)
+
+# Column names
+column_names = iris_df.columns.tolist()
+print("\nColumn names:", column_names)
+
+# Mean of all attributes
+mean_values = iris_df.mean()
+print("\nMean of all attributes:\n", mean_values)
+
+# Calculate skewness and kurtosis for each attribute
+skewness_values = iris_df.skew()
+kurtosis_values = iris_df.kurt()
+print("\nSkewness of attributes:\n", skewness_values)
+print("\nKurtosis of attributes:\n", kurtosis_values)
