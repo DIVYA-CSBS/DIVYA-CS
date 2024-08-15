@@ -1,0 +1,26 @@
+import pandas as pd
+from sklearn.datasets import load_iris
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load the Iris dataset
+iris = load_iris()
+iris_df = pd.DataFrame(iris.data, columns=iris.feature_names)
+
+# Generate the statistical description of the Iris dataset
+statistical_description = iris_df.describe()
+print("Statistical Description of the Iris dataset:\n", statistical_description)
+
+# Box plot for any one attribute (e.g., 'sepal length (cm)')
+plt.figure(figsize=(8, 6))
+sns.boxplot(data=iris_df, y='sepal length (cm)')
+plt.title("Box Plot of Sepal Length (cm)")
+plt.show()
+
+# Dependency Curve (Scatter plot) of 'sepal length (cm)' against another attribute, e.g., 'petal length (cm)'
+plt.figure(figsize=(8, 6))
+sns.scatterplot(x='petal length (cm)', y='sepal length (cm)', data=iris_df)
+plt.title("Dependency Curve (Scatter Plot) of Sepal Length vs Petal Length")
+plt.xlabel('Petal Length (cm)')
+plt.ylabel('Sepal Length (cm)')
+plt.show()
