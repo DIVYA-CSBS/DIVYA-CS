@@ -1,0 +1,38 @@
+import pandas as pd
+from sklearn.datasets import load_iris
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+
+# Load the Iris dataset
+iris = load_iris()
+iris_df = pd.DataFrame(iris.data, columns=iris.feature_names)
+
+# Count the total number of records based on the values under each attribute
+value_counts = {}
+for column in iris_df.columns:
+    value_counts[column] = iris_df[column].value_counts()
+
+print("Value counts for each attribute:\n")
+for column, counts in value_counts.items():
+    print(f"{column}:\n{counts}\n")
+
+# Plot Normal Distribution of each attribute and print SD and Mean
+for column in iris_df.columns:
+    mean = iris_df[column].mean()
+    std_dev = iris_df[column].std()
+    print(f"{column} - Mean: {mean}, Standard Deviation: {std_dev}")
+    
+    sns.histplot(iris_df[column], kde=True, stat="density", linewidth=0)
+    plt.title(f"Normal Distribution of {column}")
+    plt.xlabel(column)
+    plt.ylabel('Density')
+    plt.show()
+
+# Plot the distribution of each attribute using Histogram
+for column in iris_df.columns:
+    plt.hist(iris_df[column], bins=20, edgecolor='black')
+    plt.title(f"Histogram of {column}")
+    plt.xlabel(column)
+    plt.ylabel('Frequency')
+    plt.show()
